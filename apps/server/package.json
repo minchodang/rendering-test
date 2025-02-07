@@ -10,16 +10,22 @@
 	},
 	"nodemonConfig": {
 		"watch": "src",
-		"ignore": ["dist/**", "node_modules/**"],
+		"ignore": [
+			"dist/**",
+			"node_modules/**"
+		],
 		"ext": "ts",
 		"exec": "rm -rf ./dist && pnpm node ./esbuild.config.js && node --loader=extensionless ./dist/index.js"
 	},
 	"dependencies": {
+		"@fastify/autoload": "^6.1.0",
+		"@fastify/cors": "^10.0.2",
 		"@fastify/middie": "^9.0.3",
 		"dotenv": "^16.4.7",
 		"dotenv-safe": "^9.1.0",
 		"extensionless": "^1.9.9",
 		"fastify": "^5.2.1",
+		"fastify-plugin": "^5.0.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"vite": "^6.1.0"

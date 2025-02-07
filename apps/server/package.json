@@ -6,13 +6,13 @@
 	"scripts": {
 		"dev": "nodemon",
 		"build": "node ./esbuild.config.js",
-		"start": "node --loader=extensionless ./dist/_dev.js"
+		"start": "node --loader=extensionless ./dist/index.js"
 	},
 	"nodemonConfig": {
 		"watch": "src",
 		"ignore": ["dist/**", "node_modules/**"],
 		"ext": "ts",
-		"exec": "rm -rf ./dist && pnpm node ./esbuild.config.js && node --loader=extensionless ./dist/_dev.js"
+		"exec": "rm -rf ./dist && pnpm node ./esbuild.config.js && node --loader=extensionless ./dist/index.js"
 	},
 	"dependencies": {
 		"@fastify/middie": "^9.0.3",

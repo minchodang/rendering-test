@@ -29,7 +29,7 @@ const rawTemplate = await fs.readFile(
 	"utf-8",
 );
 
-console.log(message);
+console.log(message, "ssss");
 // fastify.get("*", async (req, reply) => {
 // 	const template = await vite.transformIndexHtml(req.url, rawTemplate);
 // 	const

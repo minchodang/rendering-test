@@ -4,9 +4,15 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "tsx ./src/_dev.ts",
+		"dev": "nodemon",
 		"build": "node ./esbuild.config.js",
 		"start": "node --loader=extensionless ./dist/_dev.js"
+	},
+	"nodemonConfig": {
+		"watch": "src",
+		"ignore": ["dist/**", "node_modules/**"],
+		"ext": "ts",
+		"exec": "rm -rf ./dist && pnpm node ./esbuild.config.js && node --loader=extensionless ./dist/_dev.js"
 	},
 	"dependencies": {
 		"@fastify/middie": "^9.0.3",

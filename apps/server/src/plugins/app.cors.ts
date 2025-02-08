@@ -3,11 +3,11 @@ import fp from "fastify-plugin";
 
 export default fp(
 	async (app) => {
-		app.register(fastifyCors, {
+		await app.register(fastifyCors, {
 			preflightContinue: true,
 		});
 	},
 	{
-		name: "cors",
+		name: "app.cors",
 	},
 );

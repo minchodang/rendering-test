@@ -4,7 +4,7 @@ import { makeApp } from "./makeApp";
 const HOST = process.env.HOST ?? "0.0.0.0";
 const PORT = Number(process.env.PORT ?? "9000");
 
-const app = makeApp();
+const app = await makeApp();
 
 await app.listen({
 	host: HOST,

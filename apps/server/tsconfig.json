@@ -1,18 +1,16 @@
 {
 	"compilerOptions": {
-		"jsx": "react",
-		"types": ["node"],
 		"target": "ESNext",
+		"jsx": "react-jsx",
 		"module": "ESNext",
-		"moduleResolution": "bundler",
-		"lib": ["ESNext"],
+		"moduleResolution": "node",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
 		"skipLibCheck": true,
-		"isolatedModules": true,
-		"noEmit": true,
+		"types": ["vite/client"],
+		"paths": { "@/*": ["./src/*"] },
 		"resolveJsonModule": true
 	},
-	"include": ["src"]
+	"include": ["src", "../web/src/entry-server.tsx"]
 }

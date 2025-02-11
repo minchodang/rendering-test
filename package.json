@@ -15,5 +15,9 @@
 	"packageManager": "pnpm@9.0.0",
 	"engines": {
 		"node": ">=18"
+	},
+	"dependencies": {
+		"@tanstack/react-query": "^5.66.0",
+		"ky": "^1.7.4"
 	}
 }

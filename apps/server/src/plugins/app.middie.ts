@@ -6,7 +6,6 @@ import { createServer } from "vite";
 
 export default fp(
 	async (app) => {
-		console.log(app.log.info("여기 찍혀!"), "앱은?");
 		await app.register(fastifyMidi);
 		const vite = await createServer({
 			root: path.resolve("../../apps/web"),

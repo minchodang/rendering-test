@@ -1,24 +1,29 @@
-import { useQuery } from "@tanstack/react-query";
-import { Link, useSearchParams } from "react-router";
-import { listQueryOptions } from "../api/listQueryOptions";
+import { Suspense } from "react";
+import { Link } from "react-router";
+import { Articles } from "../components/Articles";
 
 const RootPage = () => {
-	const [searchParams] = useSearchParams();
-	const delayMs = searchParams.get("delayMs")
-		? Number.parseInt(searchParams.get("delayMs") as string)
-		: undefined;
-
-	const list = useQuery(listQueryOptions(delayMs));
 	return (
 		<div>
 			<h1>루트페이지2</h1>
 			<Link to={"/detail"}>상세페이지 이동s</Link>
-			{list.data?.map((item) => (
-				<article key={item.id}>
-					<h1>{item.title}</h1>
-					<p>{item.body}</p>
-				</article>
-			))}
+			<Suspense
+				fallback={
+					<div
+						style={{
+							width: "100%",
+							height: "100vh",
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+						}}
+					>
+						loading...
+					</div>
+				}
+			>
+				<Articles />
+			</Suspense>
 		</div>
 	);
 };

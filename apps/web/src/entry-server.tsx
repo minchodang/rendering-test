@@ -1,3 +1,4 @@
+import { PassThrough, Readable } from "node:stream";
 import {
 	QueryClient,
 	QueryClientProvider,
@@ -27,8 +28,59 @@ interface RenderingProps {
 
 const handler = createStaticHandler(router);
 
+async function* streamHTML(
+	head: string,
+	body: Readable,
+	footer: string,
+	queryClient: QueryClient,
+) {
+	let initialFooter = footer;
+	yield head;
+	console.log("[Streaming SSR] head rendered");
+	let i = 0;
+	for await (const chunk of body) {
+		yield chunk;
+		i++;
+		console.log(`[Streaming SSR] chunk ${i} rendered`);
+	}
+	const dehydratedState = dehydrate(queryClient);
+
+	initialFooter = footer.replace(
+		"{{INITIAL_STATE}}",
+		JSON.stringify(dehydratedState),
+	);
+	yield initialFooter;
+	console.log("[Streaming SSR] footer rendered");
+}
+
+function elementToReadable(element: React.ReactElement): Promise<Readable> {
+	const duplex = new PassThrough();
+
+	return new Promise((resolve, reject) => {
+		const { pipe, abort } = ReactDOMServer.renderToPipeableStream(element, {
+			onShellReady() {
+				console.log("[Streaming SSR] onShellReady");
+				resolve(pipe(duplex));
+			},
+			onShellError(error: unknown) {
+				abort();
+				reject(error);
+			},
+			onError: (error: unknown) => {
+				duplex.emit("error", error);
+			},
+		});
+	});
+}
+
 export async function render({ template, req }: RenderingProps) {
-	const queryClient = new QueryClient();
+	const queryClient = new QueryClient({
+		defaultOptions: {
+			queries: {
+				refetchOnWindowFocus: false,
+			},
+		},
+	});
 
 	const fetchRequest = createFetchRequest(req);
 	const context = (await handler.query(fetchRequest)) as StaticHandlerContext;
@@ -38,22 +90,36 @@ export async function render({ template, req }: RenderingProps) {
 		: undefined;
 
 	const url = req.url.split("?")[0];
-	console.log(url, "url 체크!");
 	if (url === "/") {
 		console.log("prefetch");
 		await queryClient.prefetchQuery(listQueryOptions(delayMs));
 	}
-	const dehydratedState = dehydrate(queryClient);
 
-	const html = ReactDOMServer.renderToString(
+	const vnode = (
 		<QueryClientProvider client={queryClient}>
 			<StaticRouterProvider router={router} context={context} />,
-		</QueryClientProvider>,
+		</QueryClientProvider>
 	);
-	// index.html 파일의 자리표시자 '{{SSR_CONTENT}}'를 SSR 결과로 대체합니다.
-	template = template
-		.replace("{{SSR_CONTENT}}", html)
-		.replace("{{INITIAL_STATE}}", JSON.stringify(dehydratedState));
+	const [head, footer] = template.split("{{SSR_CONTENT}}");
 
-	return template;
+	try {
+		const ssrStream = Readable.from(
+			streamHTML(head, await elementToReadable(vnode), footer, queryClient),
+		);
+
+		ssrStream.on("data", (chunk) => {
+			console.log("Received:", chunk.toString());
+		});
+		ssrStream.on("error", (error) => {
+			console.log("error!", error.message);
+		});
+		ssrStream.on("close", () => {
+			queryClient.clear();
+			console.log("queryClient clear!");
+		});
+
+		return ssrStream;
+	} catch (e) {
+		console.log("error", e);
+	}
 }

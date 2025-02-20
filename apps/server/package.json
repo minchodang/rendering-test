@@ -10,7 +10,10 @@
 	},
 	"nodemonConfig": {
 		"watch": "src",
-		"ignore": ["dist/**", "node_modules/**"],
+		"ignore": [
+			"dist/**",
+			"node_modules/**"
+		],
 		"ext": "ts",
 		"exec": "rm -rf ./dist && pnpm node ./esbuild.config.js && node --loader=extensionless ./dist/index.js | pnpm pino-pretty --singleLine"
 	},
@@ -26,6 +29,8 @@
 		"fastify": "^5.2.1",
 		"fastify-graceful-shutdown": "^4.0.1",
 		"fastify-plugin": "^5.0.1",
+		"graphql": "^16.10.0",
+		"graphql-yoga": "^5.12.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-router": "^7.1.5",

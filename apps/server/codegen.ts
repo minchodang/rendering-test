@@ -9,7 +9,7 @@ const config: CodegenConfig = {
 		"./src/graphql/__generated__/resolvers.ts": {
 			plugins: ["typescript", "typescript-resolvers"],
 			config: {
-				// contextType: "../defineContext#Context",
+				contextType: "../Context#Context",
 				// // 아래 두 옵션은 지금 사용하진 않겠지만 매우 중요해요!
 				// mappers: {},
 				// mapperTypeSuffix: "Type",

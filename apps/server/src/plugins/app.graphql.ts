@@ -1,16 +1,12 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import type { FastifyInstance, FastifyRequest } from "fastify";
 import fp from "fastify-plugin";
 import { createSchema, createYoga } from "graphql-yoga";
+import type { Context } from "../graphql/context";
 import { resolvers } from "../graphql/resolvers";
 
 export default fp(
 	async (app) => {
-		interface Context {
-			app: FastifyInstance;
-			req: FastifyRequest;
-		}
 		const typeDefs = await fs.readFile(
 			path.resolve("./src/graphql/__generated__/schema.graphql"),
 			"utf-8",

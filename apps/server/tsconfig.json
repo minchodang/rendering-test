@@ -12,5 +12,5 @@
 		"paths": { "@/*": ["./src/*"] },
 		"resolveJsonModule": true
 	},
-	"include": ["src", "../web/src/entry-server.tsx"]
+	"include": ["src", "../web/src/entry-server.tsx", "codegen.ts"]
 }

@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import fp from "fastify-plugin";
 import { createSchema, createYoga } from "graphql-yoga";
-import type { Context } from "../graphql/context";
+import type { Context } from "../graphql/Context";
 import { resolvers } from "../graphql/resolvers";
 
 export default fp(

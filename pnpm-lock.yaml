@@ -109,7 +109,13 @@ importers:
       pino-pretty:
         specifier: ^13.0.0
         version: 13.0.0
+      react-relay:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.3.1)
       relay-compiler:
+        specifier: ^18.2.0
+        version: 18.2.0
+      relay-runtime:
         specifier: ^18.2.0
         version: 18.2.0
       typescript:
@@ -133,6 +139,12 @@ importers:
       react-router:
         specifier: ^7.1.5
         version: 7.1.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      relay-compiler:
+        specifier: ^18.2.0
+        version: 18.2.0
+      relay-runtime:
+        specifier: ^18.2.0
+        version: 18.2.0
     devDependencies:
       '@types/react':
         specifier: ^18.0.0
@@ -140,6 +152,12 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.0
         version: 18.3.1
+      '@types/react-relay':
+        specifier: ^18.2.0
+        version: 18.2.0
+      '@types/relay-runtime':
+        specifier: ^18.2.5
+        version: 18.2.5
       '@vitejs/plugin-react':
         specifier: ^4.0.0
         version: 4.3.4(vite@4.5.9(@types/node@22.13.1))
@@ -149,6 +167,9 @@ importers:
       vite:
         specifier: ^4.0.0
         version: 4.5.9(@types/node@22.13.1)
+      vite-plugin-relay-lite:
+        specifier: ^0.10.0
+        version: 0.10.0(graphql@16.10.0)(typescript@5.5.4)(vite@4.5.9(@types/node@22.13.1))
 
 packages:
 
@@ -1187,8 +1208,14 @@ packages:
   '@types/react-dom@18.3.1':
     resolution: {integrity: sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==}
 
+  '@types/react-relay@18.2.0':
+    resolution: {integrity: sha512-F1QvwX9nnK33hzvsQfkAfDtwTWp195LpFXuArdmZFor9ELPu7SuxO6dlJGjRvXLRvBz3oJILniKL/8mGYPAZdA==}
+
   '@types/react@18.3.1':
     resolution: {integrity: sha512-V0kuGBX3+prX+DQ/7r2qsv1NsdfnCLnTgnRJ1pYnxykBhGMz+qj+box5lq7XsO5mtZsBqpjwwTu/7wszPfMBcw==}
+
+  '@types/relay-runtime@18.2.5':
+    resolution: {integrity: sha512-2ukE6xQMIpa3kG8F33kXZMcGl/VJdDjNW3eKjQVe1AZQaYnIpNX8vXpcRD6pc+No2rOwVFLbQ6thaPSXPs8ouQ==}
 
   '@types/ws@8.5.14':
     resolution: {integrity: sha512-bd/YFLW+URhBzMXurx7lWByOu+xzU9+kb3RboOteXYDfW+tr+JZa99OyNmPINEGB/ahzKrEuc8rcv4gnpJmxTw==}
@@ -1414,6 +1441,15 @@ packages:
       typescript:
         optional: true
 
+  cosmiconfig@9.0.0:
+    resolution: {integrity: sha512-itvL5h8RETACmOTFc4UfIyB2RfEHi71Ax6E/PivVxq9NseKbOWpeyHEOIbmAw1rs8Ak0VursQNww7lf7YtUwzg==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      typescript: '>=4.9.5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   cross-fetch@3.2.0:
     resolution: {integrity: sha512-Q+xVJLoGOeIMXZmbUK4HYk+69cQH6LudR0Vu/pRm2YlU/hDV9CiS0gKUMaWY5f2NeUH9C1nV3bsTlCo0FsTV1Q==}
 
@@ -1493,6 +1529,10 @@ packages:
 
   end-of-stream@1.4.4:
     resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
+
+  env-paths@2.2.1:
+    resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
+    engines: {node: '>=6'}
 
   env-schema@6.0.1:
     resolution: {integrity: sha512-WRD40Q25pP4NUbI3g3CNU5PPzcaiX7YYcPwiCZlfR4qGsKmTlckRixgHww0/fOXiXSNKA87pwshzq0ULTK/48A==}
@@ -1852,6 +1892,10 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
+  kleur@4.1.5:
+    resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
+    engines: {node: '>=6'}
+
   ky@1.7.4:
     resolution: {integrity: sha512-zYEr/gh7uLW2l4su11bmQ2M9xLgQLjyvx58UyNM/6nuqyWFHPX5ktMjvpev3F8QWdjSsHUpnWew4PBCswBNuMQ==}
     engines: {node: '>=18'}
@@ -1900,6 +1944,9 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  magic-string@0.30.17:
+    resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
 
   map-cache@0.2.2:
     resolution: {integrity: sha512-8y/eV9QQZCiyn1SprXSrCmqJN0yNRATe+PO8ztwqrvrbdRLA3eYJF0yaR0YayLWkMbsQSKWS9N2gPcGEc4UsZg==}
@@ -2124,6 +2171,11 @@ packages:
     resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==}
     engines: {node: '>=0.10.0'}
 
+  react-relay@18.2.0:
+    resolution: {integrity: sha512-/yHlv4pj3IQQPtDzYLfVk6P4wrOSvYPu/5ySPcRp4xV3pn9xoVOHVczSLcZkRVf72lJu8CIjoT8rn3roaGoFyQ==}
+    peerDependencies:
+      react: ^16.9.0 || ^17 || ^18
+
   react-router@7.1.5:
     resolution: {integrity: sha512-8BUF+hZEU4/z/JD201yK6S+UYhsf58bzYIDq2NS1iGpwxSXDu7F+DeGSkIXMFBuHZB21FSiCzEcUb18cQNdRkA==}
     engines: {node: '>=20.0.0'}
@@ -2159,6 +2211,9 @@ packages:
 
   relay-runtime@12.0.0:
     resolution: {integrity: sha512-QU6JKr1tMsry22DXNy9Whsq5rmvwr3LSZiiWV/9+DFpuTWvp+WFhobWMc8TC4OjKFfNhEZy7mOiqUAn5atQtug==}
+
+  relay-runtime@18.2.0:
+    resolution: {integrity: sha512-r4FYWlx1dPwFW+KQnuF1ugwVKR4toIFduCGheEf2paRc6nEEcCIgd2p2Jx2gRF+4niO3mCbRZvqdCoKaznUDzg==}
 
   remedial@1.0.8:
     resolution: {integrity: sha512-/62tYiOe6DzS5BqVsNpH/nkGlX45C/Sp6V+NtiN6JQNS1Viay7cWkazmRkrQrdFj2eshDe96SIQNIoMxqhzBOg==}
@@ -2481,6 +2536,13 @@ packages:
   value-or-promise@1.0.12:
     resolution: {integrity: sha512-Z6Uz+TYwEqE7ZN50gwn+1LCVo9ZVrpxRPOhOLnncYkY1ZzOYtrX8Fwf/rFktZ8R5mJms6EZf5TqNOMeZmnPq9Q==}
     engines: {node: '>=12'}
+
+  vite-plugin-relay-lite@0.10.0:
+    resolution: {integrity: sha512-jJtH6Xv3YsCjARkml8Vv/vVjaNOTcPr8ALmpfAWKYQMEXgpDP46IVRUIBOqiqYbw7iZdQa0/2JTleNdrdvPUeQ==}
+    engines: {node: '>= 18.0.0'}
+    peerDependencies:
+      graphql: ^15.0.0 || ^16.0.0
+      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
 
   vite@4.5.9:
     resolution: {integrity: sha512-qK9W4xjgD3gXbC0NmdNFFnVFLMWSNiR3swj957yutwzzN16xF/E7nmtAyp1rT9hviDroQANjE4HK3H4WqWdFtw==}
@@ -3657,10 +3719,17 @@ snapshots:
     dependencies:
       '@types/react': 18.3.1
 
+  '@types/react-relay@18.2.0':
+    dependencies:
+      '@types/react': 18.3.1
+      '@types/relay-runtime': 18.2.5
+
   '@types/react@18.3.1':
     dependencies:
       '@types/prop-types': 15.7.13
       csstype: 3.1.3
+
+  '@types/relay-runtime@18.2.5': {}
 
   '@types/ws@8.5.14':
     dependencies:
@@ -3915,6 +3984,15 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.3
 
+  cosmiconfig@9.0.0(typescript@5.5.4):
+    dependencies:
+      env-paths: 2.2.1
+      import-fresh: 3.3.1
+      js-yaml: 4.1.0
+      parse-json: 5.2.0
+    optionalDependencies:
+      typescript: 5.5.4
+
   cross-fetch@3.2.0:
     dependencies:
       node-fetch: 2.7.0
@@ -3977,6 +4055,8 @@ snapshots:
   end-of-stream@1.4.4:
     dependencies:
       once: 1.4.0
+
+  env-paths@2.2.1: {}
 
   env-schema@6.0.1:
     dependencies:
@@ -4422,6 +4502,8 @@ snapshots:
 
   json5@2.2.3: {}
 
+  kleur@4.1.5: {}
+
   ky@1.7.4: {}
 
   light-my-request@6.5.1:
@@ -4476,6 +4558,10 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  magic-string@0.30.17:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.0
 
   map-cache@0.2.2: {}
 
@@ -4711,6 +4797,17 @@ snapshots:
 
   react-refresh@0.14.2: {}
 
+  react-relay@18.2.0(react@18.3.1):
+    dependencies:
+      '@babel/runtime': 7.26.9
+      fbjs: 3.0.5
+      invariant: 2.2.4
+      nullthrows: 1.1.1
+      react: 18.3.1
+      relay-runtime: 18.2.0
+    transitivePeerDependencies:
+      - encoding
+
   react-router@7.1.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@types/cookie': 0.6.0
@@ -4742,6 +4839,14 @@ snapshots:
   relay-compiler@18.2.0: {}
 
   relay-runtime@12.0.0:
+    dependencies:
+      '@babel/runtime': 7.26.9
+      fbjs: 3.0.5
+      invariant: 2.2.4
+    transitivePeerDependencies:
+      - encoding
+
+  relay-runtime@18.2.0:
     dependencies:
       '@babel/runtime': 7.26.9
       fbjs: 3.0.5
@@ -5035,6 +5140,16 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   value-or-promise@1.0.12: {}
+
+  vite-plugin-relay-lite@0.10.0(graphql@16.10.0)(typescript@5.5.4)(vite@4.5.9(@types/node@22.13.1)):
+    dependencies:
+      cosmiconfig: 9.0.0(typescript@5.5.4)
+      graphql: 16.10.0
+      kleur: 4.1.5
+      magic-string: 0.30.17
+      vite: 4.5.9(@types/node@22.13.1)
+    transitivePeerDependencies:
+      - typescript
 
   vite@4.5.9(@types/node@22.13.1):
     dependencies:

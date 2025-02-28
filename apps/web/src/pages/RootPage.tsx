@@ -1,6 +1,19 @@
 import { Suspense } from "react";
+import { loadQuery } from "react-relay";
 import { Link } from "react-router";
+import { Environment, graphql } from "relay-runtime";
 import { Articles } from "../components/Articles";
+import { relayEnvironment } from "../relay/createRelayEnvironment";
+
+const query = graphql`
+	 query RootPageQuery {
+   		 ping
+	}
+`;
+
+const queryRef = loadQuery(relayEnvironment, query, {});
+await queryRef.source?.toPromise();
+console.log(relayEnvironment.getStore().getSource().toJSON());
 
 const RootPage = () => {
 	return (

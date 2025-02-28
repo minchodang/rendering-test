@@ -1,7 +1,7 @@
 import { Environment, Network, RecordSource, Store } from "relay-runtime";
 
 const network = Network.create(async (operation, variables, cacheConfig) => {
-  const response = await fetch("http://127.0.0.1:5173/graphql", {
+  const response = await fetch("http://127.0.0.1:9000/graphql", {
     method: "post",
     body: JSON.stringify({
       query: operation?.text,
@@ -18,7 +18,7 @@ const network = Network.create(async (operation, variables, cacheConfig) => {
 
 const store = new Store(new RecordSource());
 
-const relayEnvironment = new Environment({
+export const relayEnvironment = new Environment({
   network,
   store,
 });
